@@ -74,10 +74,13 @@ for i in range(0,code.shape[0]):
             time.sleep(20)
             print("aaaaaaaaaaaaaaaa")
             count+=1
-            element = driver.find_element(By.ID, "ats-interstitial-button")
-            time.sleep(0.3)
-            element.click()
-            time.sleep(2)
+            try:
+                element = driver.find_element(By.ID, "ats-interstitial-button")
+                time.sleep(0.3)
+                element.click()
+                time.sleep(2)
+            except:
+                continue
 
         month = list(code["撥券日期(上市、上櫃日期)"])
 
