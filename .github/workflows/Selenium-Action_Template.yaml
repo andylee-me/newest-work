@@ -30,7 +30,7 @@ jobs:
         run: pip install pandas
 
       - name: Running the Python script
-        run: python Selenium-Template-later.py | more OTC.csv
+        run: Selenium-Template.py | more OTC.csv
 
       - name: Move specific CSV files to target folder
         run: |
