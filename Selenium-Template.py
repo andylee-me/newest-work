@@ -107,11 +107,11 @@ for i in range(0,code.shape[0]):
             print(code_send)
             s.send_keys(code_send)
             time.sleep(0.5)
-        element = driver.find_element(By.XPATH, '//option[@id="divK_ChartDetail"]/section/table/tbody/tr/td[1]/nobr[1]/input[3]')
+        element = driver.find_element("xpath", "//input[@value='查詢']")
         element.click()
         time.sleep(0.5)
         
-        element = driver.find_element(By.XPATH, '//option[@id="divK_ChartDetail"]/section/table/tbody/tr/td[2]/nobr/input[1]')
+        element = driver.find_element("xpath", "//input[@value='XLS']")        
         element.click()
         time.sleep(2)
 
