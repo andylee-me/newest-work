@@ -70,9 +70,10 @@ for i in range(0,code.shape[0]):
     
     if int(code["證券代號"][i]) != "":
         driver.get('https://goodinfo.tw/tw/ShowK_Chart.asp?STOCK_ID='+str(int(code["證券代號"][i]))+'&CHT_CAT=WEEK')
-        time.sleep(10)
+        time.sleep(20)
         element = driver.find_element(By.ID, "ats-interstitial-button")
         element.click()
+        time.sleep(1)
 
         month = list(code["撥券日期(上市、上櫃日期)"])
 
