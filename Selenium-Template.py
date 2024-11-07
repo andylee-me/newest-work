@@ -106,7 +106,7 @@ for i in range(0,code.shape[0]):
                 code_send = month[g+i*3][f]
                 print(code_send)
                 s.send_keys(code_send)
-                time.sleep(0.1)
+                time.sleep(0.2)
         element = driver.find_element(By.XPATH, '//option[@id="divK_ChartDetail"]/section/table/tbody/tr/td[1]/nobr[1]/input[3]')
         element.click()
         time.sleep(0.5)
