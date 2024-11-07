@@ -71,7 +71,7 @@ for i in range(0,code.shape[0]):
     if int(code["證券代號"][i]) != "":
         driver.get('https://goodinfo.tw/tw/ShowK_Chart.asp?STOCK_ID='+str(int(code["證券代號"][i]))+'&CHT_CAT=WEEK')
         time.sleep(10)
-        element = driver.find_element(by=By.CLASS_NAME, value="ats-interstitial-button")
+        element = driver.find_element(by=By.CLASS_NAME, ID="ats-interstitial-button")
         element.click()
 
         month = list(code["撥券日期(上市、上櫃日期)"])
@@ -84,7 +84,7 @@ for i in range(0,code.shape[0]):
         month.pop(-1) 
         #month = [2024,12,4,2024,11,3.....]                
                 
-        s = driver.find_element(by=By.CLASS_NAME, value="edtSTART_TIME")
+        s = driver.find_element(by=By.CLASS_NAME, ID="edtSTART_TIME")
         if int(month[1+i*3]) == 1 or int(month[1+i*3]) == 2:
             month[1+i*3] = int(month[1+i*3])+10
             month[0+i*3] = int(month[0+i*3])-1
