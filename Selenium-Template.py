@@ -15,9 +15,9 @@ import shutil
 import csv
 
 # The following 3 lines are for ubuntu only. If windows, please comments then to work well..
-#from pyvirtualdisplay import Display
-#display = Display(visible=0, size=(800, 800))  
-#display.start()
+from pyvirtualdisplay import Display
+display = Display(visible=0, size=(800, 800))  
+display.start()
 
 chromedriver_autoinstaller.install()  # Check if the current version of chromedriver exists
                                       # and if it doesn't exist, download it automatically,
@@ -143,8 +143,6 @@ for i in range(len(month)):
                     end.append(b)
                     b = []
                     count = 0
-df = pd.DataFrame(end, columns=["Year", "Month","Date","Code"])
-df.to_csv("file.csv", index=False)
 
 
 
@@ -166,3 +164,4 @@ for idx, file_name in enumerate(os.listdir(folder_path)):
             # 更改檔案名稱
             os.rename(old_path, new_path)
             print(f"Renamed '{file_name}' to '{new_name}'")
+
