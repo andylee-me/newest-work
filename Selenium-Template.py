@@ -96,6 +96,8 @@ for i in range(0,code.shape[0]):
         if int(month[1+i*3]) == 1 or int(month[1+i*3]) == 2:
             month[1+i*3] = int(month[1+i*3])+10
             month[0+i*3] = int(month[0+i*3])-1
+        else:
+            month[1+i*3] = int(month[1+i*3])-2
         s.click()
         s.send_keys(Keys.LEFT)
 
