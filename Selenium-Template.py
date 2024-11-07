@@ -97,6 +97,7 @@ for i in range(0,code.shape[0]):
             month[1+i*3] = int(month[1+i*3])+10
             month[0+i*3] = int(month[0+i*3])-1
         s.click()
+        s.send_keys(Keys.LEFT)
 
         #輸入日期
         for g in range(0,3):
