@@ -57,7 +57,7 @@ driver = webdriver.Chrome(options = chrome_options)
 #with open('./GitHub_Action_Results.txt', 'w') as f:
 #    f.write(f"This was written with a GitHub action {driver.title}")
 
-
+count = 0
 #read google-sheets
 url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSINLlSv4NcCszvA5XOPsuYCxZEk9_tBnhgLvyDkcG73QgFObITFtaZRQ492wlS53NPBlQi0AfPHMVh/pub?gid=1326092367&single=true&output=csv"
 code = pd.read_csv(url)
@@ -70,10 +70,12 @@ for i in range(0,code.shape[0]):
     
     if int(code["證券代號"][i]) != "":
         driver.get('https://goodinfo.tw/tw/ShowK_Chart.asp?STOCK_ID='+str(int(code["證券代號"][i]))+'&CHT_CAT=WEEK')
-        time.sleep(10)
-        element = driver.find_element(By.ID, "ats-interstitial-button")
-        element.click()
-        time.sleep(2)
+        if count == 0:
+            time.sleep(30)
+            count+=1
+            element = driver.find_element(By.ID, "ats-interstitial-button")
+            element.click()
+            time.sleep(2)
 
         month = list(code["撥券日期(上市、上櫃日期)"])
 
