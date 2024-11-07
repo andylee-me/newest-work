@@ -3,6 +3,7 @@ from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.keys import Keys
 import chromedriver_autoinstaller
 
 from pathlib import Path
@@ -12,7 +13,6 @@ import os
 from os.path import exists
 import shutil
 import csv
-import keys
 
 # The following 3 lines are for ubuntu only. If windows, please comments then to work well..
 from pyvirtualdisplay import Display
