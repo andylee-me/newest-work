@@ -102,7 +102,7 @@ for i in range(0,code.shape[0]):
         s.send_keys(Keys.LEFT)
 
         #輸入日期
-        for g in range(0,3):
+        for g in range(0,2):
             if g == 1:
                 s.send_keys(Keys.TAB)
             code_send = month[g+i*3]
