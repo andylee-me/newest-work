@@ -78,14 +78,18 @@ for i in range(0,code.shape[0]):
         for k in range(0,code.shape[0]):
             month_pass = month_pass+str(month[k])+"/"
         month = month_pass.split("/")
-        month.pop(-1)                
+        month.pop(-1) 
+        #month = [2024,12,4,2024,11,3.....]                
                 
-        if int(month[1+i*3]) == 1:
+        s = driver.find_element(by=By.CLASS_NAME, value="edtSTART_TIME")
+        if int(month[1+i*3]) == 2 or int(month[1+i*3]) == 1:
             month[1+i*3] = int(month[1+i*3])+12
             s = driver.find_element(by=By.CLASS_NAME, value="select-year")
             Select(s).select_by_index(1)
-        s = driver.find_element(by=By.CLASS_NAME, value="select-month")
-        Select(s).select_by_index(int(month[1+i*3])-j-1)
+        
+
+        
+        code_send = str(int(code["證券代號"][i]))
     
         element = driver.find_element(by=By.CLASS_NAME, value="response")
         element.click()
