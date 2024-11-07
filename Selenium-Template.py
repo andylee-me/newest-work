@@ -100,7 +100,7 @@ for i in range(0,code.shape[0]):
 
         #輸入日期
         for g in range(0,3):
-            if g == 1:
+            if g == 2:
                 s.send_keys(Keys.TAB)
             for f in range(0,len(month[g+i*3])):
                 code_send = month[g+i*3][f]
