@@ -36,22 +36,10 @@ jobs:
         run: |
           # 使用條件將特定格式的 CSV 移動到指定資料夾
           for file in *.csv; do
-            if [[ $file == EMGSTK_*.csv ]]; then
+            if [[ $file == info*.csv ]]; then
               mv "$file" file/
             fi
           done
-
-      - name: Rename CSV Files in "file" Folder
-        run: |
-          # 進入 file 資料夾並處理符合條件的 CSV 檔案
-          cd file
-          for file in EMGSTK_*.csv; do
-            # 移除前綴 "EMGSTK_"，僅保留後面的部分
-            new_name="${file#EMGSTK_}"
-            echo "Renaming $file to $new_name"
-            mv "$file" "$new_name"
-          done
-          cd ..
         
       - name: Commit and Push The Results From Python Selenium Action
         run: |
