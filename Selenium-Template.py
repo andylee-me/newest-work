@@ -80,7 +80,7 @@ for i in range(0,code.shape[0]):
                 element.click()
                 time.sleep(2)
             except:
-                continue
+                pass
 
         month = list(code["撥券日期(上市、上櫃日期)"])
 
