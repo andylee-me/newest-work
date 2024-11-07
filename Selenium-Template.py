@@ -132,4 +132,16 @@ for i in range(0,code.shape[0]):
             print(f"File '{DownloadedFilename}' copied to 'OTC.csv'.")
             print("Download completed...",downloadDir+'OTC.csv')
 
+b = []
+end = []
+count = 0
+for i in range(len(month)):
+          b.append(month[i])
+          count+=1
+          if count == 3:
+                    end.append(b)
+                    b = []
+                    count = 0
+df = pd.DataFrame(end, columns=["Year", "Month","Date"])
+df.to_csv("file.csv", index=False)
   
