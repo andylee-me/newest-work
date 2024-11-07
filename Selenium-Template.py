@@ -12,6 +12,7 @@ import os
 from os.path import exists
 import shutil
 import csv
+import keys
 
 # The following 3 lines are for ubuntu only. If windows, please comments then to work well..
 from pyvirtualdisplay import Display
@@ -82,19 +83,28 @@ for i in range(0,code.shape[0]):
         #month = [2024,12,4,2024,11,3.....]                
                 
         s = driver.find_element(by=By.CLASS_NAME, value="edtSTART_TIME")
-        if int(month[1+i*3]) == 2 or int(month[1+i*3]) == 1:
-            month[1+i*3] = int(month[1+i*3])+12
-            s = driver.find_element(by=By.CLASS_NAME, value="select-year")
-            Select(s).select_by_index(1)
-        
+        if int(month[1+i*3]) == 1 or int(month[1+i*3]) == 2:
+            month[1+i*3] = int(month[1+i*3])+10
+            month[0+i*3] = int(month[0+i*3])-1
+        s.click()
 
-        
-        code_send = str(int(code["證券代號"][i]))
-    
-        element = driver.find_element(by=By.CLASS_NAME, value="response")
+        #輸入日期
+        for g in range(0,3):
+            if g == 1:
+                s.send_keys(Keys.TAB)
+            for f in range(0,len(month[g+i*3])):
+                code_send = month[g+i*3][f]
+                s.send_keys(code_send)
+                time.sleep(0.01)
+        element = driver.find_element(by=By.CLASS_NAME, value="查詢")
+        element.click()
+        time.sleep(0.5)
+        element = driver.find_element(by=By.CLASS_NAME, value="XLS")
         element.click()
         time.sleep(2)
-            
+
+
+
         #driver.get_screenshot_as_file("page.png")
         latestDownloadedFileName = getDownLoadedFileName() 
         time.sleep(2)
