@@ -71,7 +71,7 @@ for i in range(0,code.shape[0]):
     if int(code["證券代號"][i]) != "":
         driver.get('https://goodinfo.tw/tw/ShowK_Chart.asp?STOCK_ID='+str(int(code["證券代號"][i]))+'&CHT_CAT=WEEK')
         if count == 0:
-            time.sleep(15)
+            time.sleep(5)
             print("aaaaaaaaaaaaaaaa")
             count+=1
             try:
@@ -139,9 +139,30 @@ for i in range(len(month)):
           b.append(month[i])
           count+=1
           if count == 3:
+                    b.append(code["證券代號"][i])
                     end.append(b)
                     b = []
                     count = 0
-df = pd.DataFrame(end, columns=["Year", "Month","Date"])
+df = pd.DataFrame(end, columns=["Year", "Month","Date","Code"])
 df.to_csv("file.csv", index=False)
-  
+
+
+
+# 設定檔案資料夾的路徑
+folder_path = 'file'
+
+# 遍歷資料夾中的檔案並更名
+for idx, file_name in enumerate(os.listdir(folder_path)):
+    if file_name.startswith("K_Chart") and file_name.endswith(".xls"):
+        # 確保 list 中有足夠的資料來進行更名
+        if idx < len(end):
+            # 提取資料列表中的資訊
+            year, month, day, code = end[idx]
+            # 設定新檔案名稱
+            new_name = f"{code}-{month}-{day}.xls"
+            old_path = os.path.join(folder_path, file_name)
+            new_path = os.path.join(folder_path, new_name)
+            
+            # 更改檔案名稱
+            os.rename(old_path, new_path)
+            print(f"Renamed '{file_name}' to '{new_name}'")
