@@ -71,7 +71,7 @@ for i in range(0,code.shape[0]):
     if int(code["證券代號"][i]) != "":
         driver.get('https://goodinfo.tw/tw/ShowK_Chart.asp?STOCK_ID='+str(int(code["證券代號"][i]))+'&CHT_CAT=WEEK')
         if count == 0:
-            time.sleep(10)
+            time.sleep(20)
             print("aaaaaaaaaaaaaaaa")
             count+=1
             element = driver.find_element(By.ID, "ats-interstitial-button")
