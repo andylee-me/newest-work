@@ -71,7 +71,7 @@ for i in range(0,code.shape[0]):
     if int(code["證券代號"][i]) != "":
         driver.get('https://goodinfo.tw/tw/ShowK_Chart.asp?STOCK_ID='+str(int(code["證券代號"][i]))+'&CHT_CAT=WEEK')
         if count == 0:
-            time.sleep(30)
+            time.sleep(10)
             print("aaaaaaaaaaaaaaaa")
             count+=1
             element = driver.find_element(By.ID, "ats-interstitial-button")
@@ -103,10 +103,11 @@ for i in range(0,code.shape[0]):
                 code_send = month[g+i*3][f]
                 s.send_keys(code_send)
                 time.sleep(0.01)
-        element = driver.find_element(by=By.CLASS_NAME, value="查詢")
+        element = driver.find_element(By.XPATH, '//*[@id="divK_ChartDetail"]/section/table/tbody/tr/td[1]/nobr[1]/input[3]')
         element.click()
         time.sleep(0.5)
-        element = driver.find_element(by=By.CLASS_NAME, value="XLS")
+        
+        element = driver.find_element(By.XPATH, '//*[@id="divK_ChartDetail"]/section/table/tbody/tr/td[2]/nobr/input[1]')
         element.click()
         time.sleep(2)
 
