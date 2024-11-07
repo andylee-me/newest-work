@@ -1,10 +1,11 @@
 name: Run Selenium On GitHub Action
 on:
   push:
-    branches:
-      - master
-  schedule:
+    paths:
+      - GoogleSheet.csv
   workflow_dispatch:
+  schedule:
+    - cron: "0 7 * * *"     # Runs every day at 7:00 AM UTC
 jobs:
   scrape:
     runs-on: ubuntu-latest
@@ -25,41 +26,41 @@ jobs:
         run: pip install chromedriver-autoinstaller selenium pyvirtualdisplay
       - name: Install xvfb
         run: sudo apt-get install xvfb
+      - name: Install pandas
+        run: pip install pandas
 
       - name: Running the Python script
-        run: python Selenium-Template.py
+        run: python Selenium-Template-later.py | more OTC.csv
+
+      - name: Move specific CSV files to target folder
+        run: |
+          # 使用條件將特定格式的 CSV 移動到指定資料夾
+          for file in *.csv; do
+            if [[ $file == EMGSTK_*.csv ]]; then
+              mv "$file" file/
+            fi
+          done
+
+      - name: Rename CSV Files in "file" Folder
+        run: |
+          # 進入 file 資料夾並處理符合條件的 CSV 檔案
+          cd file
+          for file in EMGSTK_*.csv; do
+            # 移除前綴 "EMGSTK_"，僅保留後面的部分
+            new_name="${file#EMGSTK_}"
+            echo "Renaming $file to $new_name"
+            mv "$file" "$new_name"
+          done
+          cd ..
         
-      - name: Big5 to UTF8
-        run: |
-          python ReadFile.py auction.csv Big5 | tail -n +2 |head -n -5 > auction-utf8.csv
-          python ReadFile.py 2020.csv Big5    | tail -n +2 |head -n -5 > 2020-utf8.csv  
-          python ReadFile.py 2021.csv Big5    | tail -n +2 |head -n -5 > 2021-utf8.csv  
-          python ReadFile.py 2022.csv Big5    | tail -n +2 |head -n -5 > 2022-utf8.csv  
-          python ReadFile.py 2023.csv Big5    | tail -n +2 |head -n -5 > 2023-utf8.csv  
-
-      - name: Read CSV and remove no need lines
-        id: csv
-        run: |
-          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
-          csvfile=$(cat auction-utf8.csv)    # remove the first 1/last 5 line of the auction-utf8.csv
-          echo "content<<$EOF" >> $GITHUB_OUTPUT
-          echo "$csvfile"      >> $GITHUB_OUTPUT
-          echo "$EOF"          >> $GITHUB_OUTPUT
-
-      - name: Create MD
-        uses: petems/csv-to-md-table-action@master
-        id: csv-table-output
-        with:
-          csvinput: ${{ steps.csv.outputs.content }}  
-
-      - name: Echo Markdown Table
-        run: echo "${{steps.csv-table-output.outputs.markdown-table}}" > csv.md
-
       - name: Commit and Push The Results From Python Selenium Action
         run: |
          git config --global user.name "github-actions[bot]"
          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
          git add -A
-         git add *.csv
+         git add file/*.csv
          git commit -m "GitHub Actions Results added"
          git push
+
+
+         
