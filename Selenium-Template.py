@@ -75,9 +75,9 @@ for i in range(0,code.shape[0]):
             count+=1
             try:
                 element = driver.find_element(By.ID, "ats-interstitial-button")
-                time.sleep(1)
+                time.sleep(5)
                 element.click()
-                time.sleep(2)
+                time.sleep(5)
             except:
                 pass
 
@@ -98,6 +98,7 @@ for i in range(0,code.shape[0]):
         else:
             month[1+i*3] = int(month[1+i*3])-2
         s.click()
+        time.sleep(5)
         s.send_keys(Keys.LEFT)
         s.send_keys(Keys.LEFT)
 
@@ -108,20 +109,20 @@ for i in range(0,code.shape[0]):
             code_send = month[g+i*3]
             print(code_send)
             s.send_keys(code_send)
-            time.sleep(1)
+            time.sleep(5)
         element = driver.find_element("xpath", "//input[@value='查詢']")
         element.click()
-        time.sleep(1)
+        time.sleep(5)
         
         element = driver.find_element("xpath", "//input[@value='XLS']")        
         element.click()
-        time.sleep(2)
+        time.sleep(5)
 
 
 
         #driver.get_screenshot_as_file("page.png")
         latestDownloadedFileName = getDownLoadedFileName() 
-        time.sleep(2)
+        time.sleep(5)
         #driver.get_screenshot_as_file("page1.png")
         getDownLoadedFileNameClose()
         DownloadedFilename=''.join(latestDownloadedFileName).encode().decode("utf-8")
