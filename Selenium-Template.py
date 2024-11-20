@@ -88,7 +88,6 @@ for i in range(0,code.shape[0]):
         for k in range(0,code.shape[0]):
             month_pass = month_pass+str(month[k])+"/"
         month = month_pass.split("/")
-        month.pop(-1) 
         #month = [2024,12,4,2024,11,3.....]                
 
         s = driver.find_element(By.ID, "edtSTART_TIME")
