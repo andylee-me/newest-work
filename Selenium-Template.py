@@ -75,7 +75,7 @@ for i in range(0,code.shape[0]):
             count+=1
             try:
                 element = driver.find_element(By.ID, "ats-interstitial-button")
-                time.sleep(0.5)
+                time.sleep(1)
                 element.click()
                 time.sleep(2)
             except:
@@ -107,10 +107,10 @@ for i in range(0,code.shape[0]):
             code_send = month[g+i*3]
             print(code_send)
             s.send_keys(code_send)
-            time.sleep(0.5)
+            time.sleep(1)
         element = driver.find_element("xpath", "//input[@value='查詢']")
         element.click()
-        time.sleep(0.5)
+        time.sleep(1)
         
         element = driver.find_element("xpath", "//input[@value='XLS']")        
         element.click()
