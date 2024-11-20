@@ -5,6 +5,11 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.keys import Keys
 import chromedriver_autoinstaller
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from datetime import datetime, timedelta
+
 
 from pathlib import Path
 import pandas as pd
@@ -74,12 +79,15 @@ for i in range(0,code.shape[0]):
             time.sleep(5)
             count+=1
             try:
-                element = driver.find_element(By.ID, "ats-interstitial-button")
-                time.sleep(5)
-                element.click()
-                time.sleep(5)
-            except:
-                pass
+                # 等待遮擋按鈕出現，最多等 10 秒
+                interstitial_button = WebDriverWait(driver, 10).until(
+                    EC.element_to_be_clickable((By.ID, "ats-interstitial-button"))
+                )
+                time.sleep(2)  # 稍作停留確保穩定
+                interstitial_button.click()
+                print("成功跳過視窗")
+            except Exception as e:
+                print("未偵測到跳視窗或按鈕，繼續執行：", e)
 
         month = list(code["撥券日期(上市、上櫃日期)"])
 
@@ -92,7 +100,27 @@ for i in range(0,code.shape[0]):
         print(month)
 
         s = driver.find_element(By.ID, "edtSTART_TIME")
-        if int(month[1+i*3]) == 1 or int(month[1+i*3]) == 2:
+
+
+
+        input_date = datetime(
+            year=int(month[0 + i * 3]),
+            month=int(month[1 + i * 3]),
+            day=int(month[2 + i * 3])
+        ) - timedelta(days=60)
+        
+        # 格式化日期為網站需要的格式 (YYYY/MM/DD)
+        formatted_date = input_date.strftime("%Y/%m/%d")
+        
+        # 將日期直接輸入到欄位中
+        s = driver.find_element(By.ID, "edtSTART_TIME")
+        s.click()
+        s.clear()  # 清空欄位
+        s.send_keys(formatted_date)
+        time.sleep(2)
+      
+      ###############################################################################################
+        """if int(month[1+i*3]) == 1 or int(month[1+i*3]) == 2:
             month[1+i*3] = int(month[1+i*3])+10
             month[0+i*3] = int(month[0+i*3])-1
         else:
@@ -109,7 +137,14 @@ for i in range(0,code.shape[0]):
             code_send = month[g+i*3]
             print(code_send)
             s.send_keys(code_send)
-            time.sleep(5)
+            time.sleep(5)"""
+#####################################################################################################
+
+
+
+
+
+      
         element = driver.find_element("xpath", "//input[@value='查詢']")
         element.click()
         time.sleep(5)
