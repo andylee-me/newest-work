@@ -75,7 +75,7 @@ for i in range(0,code.shape[0]):
             count+=1
             try:
                 element = driver.find_element(By.ID, "ats-interstitial-button")
-                time.sleep(0.3)
+                time.sleep(0.5)
                 element.click()
                 time.sleep(2)
             except:
