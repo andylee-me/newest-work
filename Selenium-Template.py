@@ -103,24 +103,9 @@ for i in range(0,code.shape[0]):
 
 
 
-        input_date = datetime(
-            year=int(month[0 + i * 3]),
-            month=int(month[1 + i * 3]),
-            day=int(month[2 + i * 3])
-        ) - timedelta(days=60)
-        
-        # 格式化日期為網站需要的格式 (YYYY/MM/DD)
-        formatted_date = input_date.strftime("%Y/%m/%d")
-        
-        # 將日期直接輸入到欄位中
-        s = driver.find_element(By.ID, "edtSTART_TIME")
-        s.click()
-        s.clear()  # 清空欄位
-        s.send_keys(formatted_date)
-        time.sleep(2)
       
-      ###############################################################################################
-        """if int(month[1+i*3]) == 1 or int(month[1+i*3]) == 2:
+      
+        if int(month[1+i*3]) == 1 or int(month[1+i*3]) == 2:
             month[1+i*3] = int(month[1+i*3])+10
             month[0+i*3] = int(month[0+i*3])-1
         else:
@@ -137,8 +122,7 @@ for i in range(0,code.shape[0]):
             code_send = month[g+i*3]
             print(code_send)
             s.send_keys(code_send)
-            time.sleep(5)"""
-#####################################################################################################
+            time.sleep(5)
 
 
 
