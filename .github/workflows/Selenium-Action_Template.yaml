@@ -30,6 +30,8 @@ jobs:
         run: pip install pandas
       - name: Install requests
         run: pip install requests
+      - name: Install beautifulsoup4
+        run: pip install beautifulsoup4
 
       - name: Running the Python script
         run: python Selenium-Template.py
