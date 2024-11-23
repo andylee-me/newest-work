@@ -147,7 +147,7 @@ for i in range(0,code.shape[0]):
 
 
 
-        stock_ID = str(code["證券代號"][i])
+        stock_id = str(code["證券代號"][i])
         end_date = datetime.now()  # 今天
         start_date = end_date - timedelta(days=60)
         # 模擬瀏覽器的 HTTP 標頭
