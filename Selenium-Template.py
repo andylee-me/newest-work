@@ -110,6 +110,8 @@ for i in range(0,code.shape[0]):
             month[0+i*3] = int(month[0+i*3])-1
         else:
             month[1+i*3] = int(month[1+i*3])-2
+
+      
         s.click()
         time.sleep(5)
         s.send_keys(Keys.LEFT)
