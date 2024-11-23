@@ -28,6 +28,8 @@ jobs:
         run: sudo apt-get install xvfb
       - name: Install pandas
         run: pip install pandas
+      - name: Install requests
+        run: sudo pip install requests
 
       - name: Running the Python script
         run: python Selenium-Template.py
