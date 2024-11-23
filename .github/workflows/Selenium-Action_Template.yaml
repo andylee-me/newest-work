@@ -29,7 +29,7 @@ jobs:
       - name: Install pandas
         run: pip install pandas
       - name: Install requests
-        run: sudo apt-get --reinstall install python-requests
+        run: pip install requests
 
       - name: Running the Python script
         run: python Selenium-Template.py
