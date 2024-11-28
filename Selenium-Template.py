@@ -73,7 +73,7 @@ for i in range(0,code.shape[0]):
     except:                   
         continue
     
-    if int(code["證券代號"][i]) != "":
+    if int(code["證券代號"][i]) != "" and int(code["證券代號"][i]) != "#REF!":
         driver.get('https://goodinfo.tw/tw/ShowK_Chart.asp?STOCK_ID='+str(int(code["證券代號"][i]))+'&CHT_CAT=WEEK')
         if count == 0:
             print("a")
