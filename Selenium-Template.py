@@ -168,7 +168,7 @@ for i in range(0,code.shape[0]):
         #driver.get_screenshot_as_file("page.png")
         latestDownloadedFileName = getDownLoadedFileName() 
         time.sleep(1)
-        #driver.get_screenshot_as_file("page1.png")
+        driver.get_screenshot_as_file("page1.png")
         getDownLoadedFileNameClose()
         DownloadedFilename=''.join(latestDownloadedFileName).encode().decode("utf-8")
           
