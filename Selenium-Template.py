@@ -72,23 +72,18 @@ url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSINLlSv4NcCszvA5XOPsuYCx
 code = pd.read_csv(url)
 
 for i in range(0,code.shape[0]):
-    try:                      
-        int(code["證券代號"][i])
-    except:                   
-        continue
-    
-    if int(code["證券代號"][i]) != "" and int(code["證券代號"][i]) != "#REF!":
+    try:
         driver.get('https://goodinfo.tw/tw/ShowK_Chart.asp?STOCK_ID='+str(int(code["證券代號"][i]))+'&CHT_CAT=WEEK')
         if count == 0:
             print("a")
-            time.sleep(5)
+            time.sleep(1)
             count+=1
             try:
                 # 等待遮擋按鈕出現，最多等 10 秒
                 interstitial_button = WebDriverWait(driver, 10).until(
                     EC.element_to_be_clickable((By.ID, "ats-interstitial-button"))
                 )
-                time.sleep(2)  # 稍作停留確保穩定
+                time.sleep(1)  # 稍作停留確保穩定
                 interstitial_button.click()
                 print("pass window")
             except Exception as e:
@@ -109,12 +104,14 @@ for i in range(0,code.shape[0]):
 
 
       
-      
-        if int(month[1+i*3]) == 1 or int(month[1+i*3]) == 2:
-            month[1+i*3] = int(month[1+i*3])+10
-            month[0+i*3] = int(month[0+i*3])-1
-        else:
-            month[1+i*3] = int(month[1+i*3])-2
+        try:
+            if int(month[1+i*3]) == 1 or int(month[1+i*3]) == 2:
+                month[1+i*3] = int(month[1+i*3])+10
+                month[0+i*3] = int(month[0+i*3])-1
+            else:
+                month[1+i*3] = int(month[1+i*3])-2
+        except:
+            print("AA?")
 
       
         s.click()
@@ -131,7 +128,7 @@ for i in range(0,code.shape[0]):
             code_send = month[(1-g)+i*3]
             print(code_send)
             s.send_keys(2022)
-            time.sleep(5)
+            time.sleep(1)
 
 
 
@@ -140,11 +137,11 @@ for i in range(0,code.shape[0]):
       
         element = driver.find_element("xpath", "//input[@value='查詢']")
         element.click()
-        time.sleep(5)
+        time.sleep(1)
         
         element = driver.find_element("xpath", "//input[@value='XLS']")        
         element.click()
-        time.sleep(5)
+        time.sleep(1)
 
 
 
@@ -199,7 +196,7 @@ for i in range(0,code.shape[0]):
 
         #driver.get_screenshot_as_file("page.png")
         latestDownloadedFileName = getDownLoadedFileName() 
-        time.sleep(5)
+        time.sleep(1)
         #driver.get_screenshot_as_file("page1.png")
         getDownLoadedFileNameClose()
         DownloadedFilename=''.join(latestDownloadedFileName).encode().decode("utf-8")
@@ -211,7 +208,10 @@ for i in range(0,code.shape[0]):
             print("Download completed...",downloadDir+'OTC.csv')
             downloaded_files = os.listdir(downloadDir)
             print(downloaded_files) 
-
+    except:                   
+        continue
+    
+        
 
 """b = []
 end = []
