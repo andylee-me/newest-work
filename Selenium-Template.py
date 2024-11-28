@@ -207,7 +207,7 @@ for i in range(0,code.shape[0]):
             print(f"File '{DownloadedFilename}' copied to 'OTC.csv'.")
             print("Download completed...",downloadDir+'OTC.csv')
 
-b = []
+"""b = []
 end = []
 count = 0
 for i in range(len(month)):
@@ -217,7 +217,7 @@ for i in range(len(month)):
                     b.append(code["證券代號"][i])
                     end.append(b)
                     b = []
-                    count = 0
+                    count = 0"""
 
 
 
