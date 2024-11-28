@@ -36,21 +36,21 @@ jobs:
       - name: Running the Python script
         run: python Selenium-Template.py
 
-      - name: Move specific CSV files to target folder
-        run: |
-          # 使用條件將特定格式的 CSV 移動到指定資料夾
-          for file in *.xls; do
-            if [[ $file == info*.xls ]]; then
-              mv "$file" file/
-            fi
-          done
+      #- name: Move specific CSV files to target folder
+      #  run: |
+      #    # 使用條件將特定格式的 CSV 移動到指定資料夾
+      #    for file in *.xls; do
+      #      if [[ $file == info*.xls ]]; then
+      #        mv "$file" file/
+      #      fi
+      #    done
         
       - name: Commit and Push The Results From Python Selenium Action
         run: |
          git config --global user.name "github-actions[bot]"
          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
          git add -A
-         git add file/*.xls
+         git add *.xls
          git commit -m "GitHub Actions Results added"
          git push
 
