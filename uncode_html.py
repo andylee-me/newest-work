@@ -19,7 +19,7 @@ for input_file in os.listdir(input_folder):
         # 解析 HTML
         print(f"開始解析檔案：{input_file}")
         try:
-            # 讀取檔案內容
+            # 確保檔案可以被正常讀取後關閉
             with open(file_path, 'r', encoding='utf-8') as f:
                 html_content = f.read()
 
@@ -36,9 +36,12 @@ for input_file in os.listdir(input_folder):
                 df.to_csv(output_file, index=False, encoding='utf-8-sig')
                 print(f"成功將檔案 {input_file} 轉換為 CSV：{output_file}")
 
-                # 刪除原始 .xls 檔案
-                os.remove(file_path)
-                print(f"已刪除原檔案：{input_file}")
+                # 確保檔案已完全處理完畢後刪除
+                try:
+                    os.remove(file_path)
+                    print(f"已成功刪除原檔案：{input_file}")
+                except Exception as e:
+                    print(f"刪除檔案 {input_file} 時發生錯誤：{e}")
             else:
                 print(f"檔案 {input_file} 中未找到 HTML 表格，跳過處理。")
 
