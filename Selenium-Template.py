@@ -9,8 +9,6 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from datetime import datetime, timedelta
-import requests
-from bs4 import BeautifulSoup
 
 
 from pathlib import Path
@@ -73,11 +71,12 @@ for i in range(0,code.shape[0]):
     try:                      
         int(code["證券代號"][i])
     except:                   
-        break
+        continue
     
     if int(code["證券代號"][i]) != "":
         driver.get('https://goodinfo.tw/tw/ShowK_Chart.asp?STOCK_ID='+str(int(code["證券代號"][i]))+'&CHT_CAT=WEEK')
         if count == 0:
+            print("a")
             time.sleep(5)
             count+=1
             try:
@@ -87,9 +86,9 @@ for i in range(0,code.shape[0]):
                 )
                 time.sleep(2)  # 稍作停留確保穩定
                 interstitial_button.click()
-                print("成功跳過視窗")
+                print("pass window")
             except Exception as e:
-                print("未偵測到跳視窗或按鈕，繼續執行：", e)
+                print("undetect window...keep going", e)
 
         month = list(code["撥券日期(上市、上櫃日期)"])
 
