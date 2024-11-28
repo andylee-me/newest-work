@@ -116,6 +116,8 @@ for i in range(0,code.shape[0]):
             except:
                 counter+=1
                 print("AA?")
+                if counter > code.shape[0]:
+                    break
 
       
         s.click()
