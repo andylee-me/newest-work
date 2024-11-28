@@ -50,6 +50,8 @@ jobs:
           
       - name: change file's type
         run: python change_xls_to_csv.py
+      - name: uncode-html
+        run: python html.py
         
         
       - name: Commit and Push The Results From Python Selenium Action
