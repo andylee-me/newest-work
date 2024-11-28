@@ -34,6 +34,8 @@ jobs:
         run: pip install beautifulsoup4
       - name: Install pandas xlrd oopenpyxl
         run: pip install pandas xlrd openpyxl
+      - name: Install lxml
+        run: pip install lxml
 
       - name: Running the Python script
         run: python Selenium-Template.py
