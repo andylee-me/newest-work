@@ -36,14 +36,17 @@ jobs:
       - name: Running the Python script
         run: python Selenium-Template.py
 
+
       - name: Move specific CSV files to target folder
         run: |
           # 使用條件將特定格式的 CSV 移動到指定資料夾
           for file in *.xls; do
-            if [[ $file == info*.xls ]]; then
+            if [[ $file == K*.xls ]]; then
               mv "$file" file/
             fi
           done
+
+        
         
       - name: Commit and Push The Results From Python Selenium Action
         run: |
