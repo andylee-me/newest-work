@@ -41,10 +41,14 @@ def getDownLoadedFileName():
  
   
 downloadDir = f"{os.getcwd()}//"
-preferences = {"download.default_directory": downloadDir,
-                "download.prompt_for_download": False,
-                "directory_upgrade": True,
-                "safebrowsing.enabled": True}
+preferences = {
+    "download.default_directory": downloadDir,
+    "download.prompt_for_download": False,
+    "download.directory_upgrade": True,
+    "safebrowsing.enabled": True,
+    "profile.default_content_settings.popups": 0,
+    "profile.content_settings.exceptions.automatic_downloads.*.setting": 1,
+    "profile.default_content_setting_values.automatic_downloads": 1,}
 chrome_options = webdriver.ChromeOptions()  
 
 chrome_options.add_experimental_option("prefs", preferences)
@@ -205,6 +209,9 @@ for i in range(0,code.shape[0]):
             shutil.copy(DownloadedFilename, "OTC.csv")
             print(f"File '{DownloadedFilename}' copied to 'OTC.csv'.")
             print("Download completed...",downloadDir+'OTC.csv')
+            downloaded_files = os.listdir(downloadDir)
+            print(downloaded_files) 
+
 
 """b = []
 end = []
