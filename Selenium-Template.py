@@ -120,7 +120,7 @@ for i in range(0,code.shape[0]):
                     month[0+i*3] = int(month[0+i*3])-1
                     break
                 else:
-                    month[1+i*3] = int(month[1+i*3])-2
+                    month[1+i*3] = int(month[1+i*3])-3
                     break
             except:
                 print(month[1+i*3])
