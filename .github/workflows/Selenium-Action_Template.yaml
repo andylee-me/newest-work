@@ -47,7 +47,7 @@ jobs:
           done
           
       - name: change file's type
-        run: python change_xls_to_csv
+        run: python change_xls_to_csv.py
         
         
       - name: Commit and Push The Results From Python Selenium Action
