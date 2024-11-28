@@ -137,8 +137,8 @@ for i in range(0,code.shape[0]):
         #輸入日期
         for g in range(0,2):
             if g == 1:
-                s.send_keys(Keys.TAB)
-            code_send = month[(g)+i*3]
+                s.send_keys(Keys.RIGHT)
+            code_send = month[(1-g)+i*3]
             print(code_send)
             s.send_keys(code_send)
             time.sleep(1)
