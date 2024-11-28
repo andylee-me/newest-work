@@ -2,8 +2,8 @@ import os
 import pandas as pd
 
 # 定義檔案夾路徑
-folder_path = './file'  # 儲存 XLS 檔案的資料夾
-output_folder = './converted_csv'  # 儲存 CSV 檔案的資料夾
+folder_path = '/file'  # 儲存 XLS 檔案的資料夾
+output_folder = '/converted_csv'  # 儲存 CSV 檔案的資料夾
 
 # 確保輸出資料夾存在
 if not os.path.exists(output_folder):
