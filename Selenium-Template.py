@@ -148,49 +148,7 @@ for i in range(0,code.shape[0]):
 
 
 
-        """stock_id = str(code["證券代號"][i])
-        end_date = datetime.now()  # 今天
-        start_date = end_date - timedelta(days=60)
-        # 模擬瀏覽器的 HTTP 標頭
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",
-            "Accept-Language": "zh-TW",
-        }
         
-        # 目標 URL
-        base_url = "https://goodinfo.tw/tw/ShowK_Chart.asp"
-        
-        # 發送 GET 請求並獲取網頁
-        params = {
-            "STOCK_ID": stock_id,
-            "CHT_CAT": "WEEK",
-        }
-        response = requests.get(base_url, headers=headers, params=params)
-        
-        if response.status_code == 200:
-            # 使用 BeautifulSoup 解析網頁內容
-            soup = BeautifulSoup(response.text, "html.parser")
-        
-            # 嘗試找到下載 XLS 的連結
-            download_link = None
-            for a_tag in soup.find_all("a"):
-                if "xls" in a_tag.get("href", ""):
-                    download_link = a_tag["href"]
-                    break
-        
-            if download_link:
-                # 完整的 XLS 下載連結
-                xls_url = f"https://goodinfo.tw{download_link}"
-        
-                # 發送請求下載 XLS 檔案
-                xls_response = requests.get(xls_url, headers=headers)
-        
-                if xls_response.status_code == 200:
-                    # 儲存檔案到本地
-                    file_name = f"{stock_id}_data.xls"
-                    with open(file_name, "wb") as f:
-                        f.write(xls_response.content)
-                    print(f"成功下載 Excel 檔案，儲存為：{file_name}")"""
 
 
 
@@ -210,39 +168,6 @@ for i in range(0,code.shape[0]):
             print(downloaded_files) 
     except:                   
         continue
-    
-        
-
-"""b = []
-end = []
-count = 0
-for i in range(len(month)):
-          b.append(month[i])
-          count+=1
-          if count == 3:
-                    b.append(code["證券代號"][i])
-                    end.append(b)
-                    b = []
-                    count = 0"""
 
 
-
-"""# 設定檔案資料夾的路徑
-folder_path = 'file'
-
-# 遍歷資料夾中的檔案並更名
-for idx, file_name in enumerate(os.listdir(folder_path)):
-    if file_name.startswith("K_Chart") and file_name.endswith(".xls"):
-        # 確保 list 中有足夠的資料來進行更名
-        if idx < len(end):
-            # 提取資料列表中的資訊
-            year, month, day, code = end[idx]
-            # 設定新檔案名稱
-            new_name = f"{code}-{month}-{day}.xls"
-            old_path = os.path.join(folder_path, file_name)
-            new_path = os.path.join(folder_path, new_name)
-            
-            # 更改檔案名稱
-            os.rename(old_path, new_path)
-            print(f"Renamed '{file_name}' to '{new_name}'")"""
 
