@@ -53,14 +53,10 @@ jobs:
       - name: change file's type
         run: python change_xls_to_csv.py
 
-      - name: Move specific CSV files to target folder
+      - name: Move CSV files to converted_csv folder
         run: |
-          # 使用條件將特定格式的 xls 移動到指定資料夾
-          for file in file/*.csv; do
-            if [[ $file == K*.csv ]]; then
-              mv "$file" converted_csv/
-            fi
-          done
+          mkdir -p converted_csv  # 確保 converted_csv 資料夾存在
+          mv file/*.csv converted_csv/  # 將所有 CSV 檔案移動到 converted_csv 資料夾中
         
         
       - name: Commit and Push The Results From Python Selenium Action
