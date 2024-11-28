@@ -20,9 +20,9 @@ import shutil
 import csv
 
 # The following 3 lines are for ubuntu only. If windows, please comments then to work well..
-from pyvirtualdisplay import Display
-display = Display(visible=0, size=(800, 800))  
-display.start()
+#from pyvirtualdisplay import Display
+#display = Display(visible=0, size=(800, 800))  
+#display.start()
 
 chromedriver_autoinstaller.install()  # Check if the current version of chromedriver exists
                                       # and if it doesn't exist, download it automatically,
@@ -98,15 +98,19 @@ for i in range(0,code.shape[0]):
             month_pass = month_pass+str(month[k])+"/"
         month = month_pass.split("/")
         #month = [2024,12,4,2024,11,3.....]   
-        print(month)
 
         s = driver.find_element(By.ID, "edtSTART_TIME")
-        for z in range(len(month)):
+        for z in range(0,len(month)):
             try:
-                int(month[z])
+                month.remove("#REF!")
+                
             except:
-                aa = month.pop(z)
-                print(aa)
+                z = z
+            try:
+                month.remove("nan")
+            except:
+                z = z
+        print(month)
 
 
         while True:
@@ -123,7 +127,7 @@ for i in range(0,code.shape[0]):
                 print("AA?")
                 if  counter > code.shape[0]:
                     break
-
+        print(month)
       
         s.click()
         time.sleep(5)
@@ -134,7 +138,7 @@ for i in range(0,code.shape[0]):
         for g in range(0,2):
             if g == 1:
                 s.send_keys(Keys.TAB)
-            code_send = month[(1-g)+i*3]
+            code_send = month[(g)+i*3]
             print(code_send)
             s.send_keys(code_send)
             time.sleep(1)
