@@ -71,6 +71,7 @@ count = 0
 url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSINLlSv4NcCszvA5XOPsuYCxZEk9_tBnhgLvyDkcG73QgFObITFtaZRQ492wlS53NPBlQi0AfPHMVh/pub?gid=1326092367&single=true&output=csv"
 code = pd.read_csv(url)
 
+counter = 0
 for i in range(0,code.shape[0]):
     try:
         driver.get('https://goodinfo.tw/tw/ShowK_Chart.asp?STOCK_ID='+str(int(code["證券代號"][i]))+'&CHT_CAT=WEEK')
@@ -120,7 +121,7 @@ for i in range(0,code.shape[0]):
             except:
                 print(month[1+i*3])
                 print("AA?")
-                if   > code.shape[0]:
+                if  counter > code.shape[0]:
                     break
 
       
@@ -174,6 +175,8 @@ for i in range(0,code.shape[0]):
             print("Download completed...",downloadDir+'OTC.csv')
             downloaded_files = os.listdir(downloadDir)
             print(downloaded_files) 
+
+        counter+=1
     except:                   
         continue
 
