@@ -71,7 +71,6 @@ count = 0
 url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSINLlSv4NcCszvA5XOPsuYCxZEk9_tBnhgLvyDkcG73QgFObITFtaZRQ492wlS53NPBlQi0AfPHMVh/pub?gid=1326092367&single=true&output=csv"
 code = pd.read_csv(url)
 
-counter = 0
 for i in range(0,code.shape[0]):
     try:
         driver.get('https://goodinfo.tw/tw/ShowK_Chart.asp?STOCK_ID='+str(int(code["證券代號"][i]))+'&CHT_CAT=WEEK')
@@ -101,23 +100,26 @@ for i in range(0,code.shape[0]):
         print(month)
 
         s = driver.find_element(By.ID, "edtSTART_TIME")
-
+        for z in range(len(month)):
+            try:
+                int(month[z])
+            except:
+                month.pop(z)
 
 
         while True:
             try:
-                if int(month[counter+1+i*3]) == 1 or int(month[counter+1+i*3]) == 2:
-                    month[counter+1+i*3] = int(month[counter+1+i*3])+10
-                    month[counter+0+i*3] = int(month[counter+0+i*3])-1
+                if int(month[1+i*3]) == 1 or int(month[1+i*3]) == 2:
+                    month[1+i*3] = int(month[1+i*3])+10
+                    month[0+i*3] = int(month[0+i*3])-1
                     break
                 else:
-                    month[counter+1+i*3] = int(month[counter+1+i*3])-2
+                    month[1+i*3] = int(month[1+i*3])-2
                     break
             except:
-                counter+=1
-                print(month[counter+1+i*3])
+                print(month[1+i*3])
                 print("AA?")
-                if counter > code.shape[0]:
+                if   > code.shape[0]:
                     break
 
       
@@ -130,7 +132,7 @@ for i in range(0,code.shape[0]):
         for g in range(0,2):
             if g == 1:
                 s.send_keys(Keys.TAB)
-            code_send = month[(1-g)+counter+i*3]
+            code_send = month[(1-g)+i*3]
             print(code_send)
             s.send_keys(code_send)
             time.sleep(1)
