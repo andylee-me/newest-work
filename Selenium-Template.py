@@ -104,7 +104,8 @@ for i in range(0,code.shape[0]):
             try:
                 int(month[z])
             except:
-                month.pop(z)
+                aa = month.pop(z)
+                print(aa)
 
 
         while True:
