@@ -76,7 +76,7 @@ for i in range(0,code.shape[0]):
         break
     
     if int(code["證券代號"][i]) != "":
-        """driver.get('https://goodinfo.tw/tw/ShowK_Chart.asp?STOCK_ID='+str(int(code["證券代號"][i]))+'&CHT_CAT=WEEK')
+        driver.get('https://goodinfo.tw/tw/ShowK_Chart.asp?STOCK_ID='+str(int(code["證券代號"][i]))+'&CHT_CAT=WEEK')
         if count == 0:
             time.sleep(5)
             count+=1
@@ -120,13 +120,14 @@ for i in range(0,code.shape[0]):
         s.send_keys(Keys.LEFT)
 
         #輸入日期
-        for g in range(0,2):
-            if g == 1:
-                s.send_keys(Keys.TAB)
+        for g in range(0,3):
+            s.send_keys(Keys.LEFT)
+            s.send_keys(Keys.LEFT)
+            for i in range(0,g):
                 s.send_keys(Keys.TAB)
             code_send = month[(1-g)+i*3]
             print(code_send)
-            s.send_keys(code_send)
+            s.send_keys(2022)
             time.sleep(5)
 
 
@@ -140,14 +141,14 @@ for i in range(0,code.shape[0]):
         
         element = driver.find_element("xpath", "//input[@value='XLS']")        
         element.click()
-        time.sleep(5)"""
+        time.sleep(5)
 
 
 
 
 
 
-        stock_id = str(code["證券代號"][i])
+        """stock_id = str(code["證券代號"][i])
         end_date = datetime.now()  # 今天
         start_date = end_date - timedelta(days=60)
         # 模擬瀏覽器的 HTTP 標頭
@@ -189,11 +190,11 @@ for i in range(0,code.shape[0]):
                     file_name = f"{stock_id}_data.xls"
                     with open(file_name, "wb") as f:
                         f.write(xls_response.content)
-                    print(f"成功下載 Excel 檔案，儲存為：{file_name}")
+                    print(f"成功下載 Excel 檔案，儲存為：{file_name}")"""
 
 
 
-        """#driver.get_screenshot_as_file("page.png")
+        #driver.get_screenshot_as_file("page.png")
         latestDownloadedFileName = getDownLoadedFileName() 
         time.sleep(5)
         #driver.get_screenshot_as_file("page1.png")
@@ -220,7 +221,7 @@ for i in range(len(month)):
 
 
 
-# 設定檔案資料夾的路徑
+"""# 設定檔案資料夾的路徑
 folder_path = 'file'
 
 # 遍歷資料夾中的檔案並更名
