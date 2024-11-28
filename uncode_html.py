@@ -1,8 +1,14 @@
+
+從你的截圖來看，檔案實際儲存的路徑仍然是在 file 資料夾中，而不是預期的 csv 資料夾中。這是因為程式中的路徑設定可能出現問題。以下是修正後的完整程式碼，確保 .csv 檔案會正確儲存在 csv 資料夾中。
+
+修正後的程式碼
+python
+複製程式碼
 import os
 import pandas as pd
 from bs4 import BeautifulSoup
 
-# 定義檔案資料夾
+# 定義資料夾名稱
 input_folder = 'file'  # 存放 .xls 的資料夾
 output_folder = 'converted_csv'  # 存放轉換後 .csv 的資料夾
 
@@ -36,8 +42,10 @@ for input_file in os.listdir(input_folder):
                 # 將 HTML 表格轉換為 Pandas DataFrame
                 df = pd.read_html(str(table))[0]
 
-                # 將轉換結果儲存至輸出資料夾
+                # 設定輸出的檔案路徑
                 output_file = os.path.join(output_folder, input_file.replace('.xls', '.csv'))
+
+                # 儲存轉換結果到輸出資料夾
                 df.to_csv(output_file, index=False, encoding='utf-8-sig')
                 print(f"成功將檔案 {input_file} 轉換為 CSV：{output_file}")
             else:
