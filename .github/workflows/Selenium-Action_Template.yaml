@@ -53,12 +53,12 @@ jobs:
       - name: change file's type
         run: python change_xls_to_csv.py
 
-      - name: move csv file to target folder-2
-        run:  
-          # 使用條件將特定格式的 csv 移動到指定資料夾
-          for file in file/*csv; do
+      - name: Move specific CSV files to target folder
+        run: |
+          # 使用條件將特定格式的 xls 移動到指定資料夾
+          for file in file/*.csv; do
             if [[ $file == K*.csv ]]; then
-              mv "$file" convertes_csv/
+              mv "$file" converted_csv/
             fi
           done
         
