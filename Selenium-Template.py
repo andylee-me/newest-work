@@ -123,15 +123,15 @@ for i in range(pluz_i,code.shape[0]+pluz_i):
 
         while True:
             try:
-                if int(month[-pluz_i+1+i*3]) == 1 or int(month[-pluz_i+1+i*3]) == 2:
-                    month[-pluz_i+1+i*3] = int(month[-pluz_i+1+i*3])+10
-                    month[-pluz_i+0+i*3] = int(month[-pluz_i+0+i*3])-1
+                if int(month[1+(i-pluz_i)*3]) == 1 or int(month[1+(i-pluz_i)*3]) == 2:
+                    month[1+(i-pluz_i)*3] = int(month[1+(i-pluz_i)*3])+10
+                    month[0+(i-pluz_i)*3] = int(month[0+(i-pluz_i)*3])-1
                     break
                 else:
-                    month[-pluz_i+1+i*3] = int(month[-pluz_i+1+i*3])-2
+                    month[1+(i-pluz_i)*3] = int(month[1+(i-pluz_i)*3])-2
                     break
             except:
-                print(month[-pluz_i+1+i*3])
+                print(month[1+(i-pluz_i)*3])
                 print("AA?")
                 if  counter > code.shape[0]:
                     print("breakk")
@@ -146,8 +146,8 @@ for i in range(pluz_i,code.shape[0]+pluz_i):
         for g in range(0,2):
             if g == 1:
                 s.send_keys(Keys.RIGHT)
-            print((1-g)-pluz_i+i*3)
-            code_send = month[(1-g)-pluz_i+i*3]
+            print((1-g)+(i-pluz_i)*3)
+            code_send = month[(1-g)+(i-pluz_i)*3]
             print(code_send)
             s.send_keys(code_send)
             time.sleep(1)
