@@ -77,6 +77,7 @@ for i in range(0,code.shape[0]):
         driver.get('https://goodinfo.tw/tw/ShowK_Chart.asp?STOCK_ID='+str(int(code["證券代號"][i]))+'&CHT_CAT=WEEK')
         print(code["證券代號"][i])
         if count == 0:
+            count+=1
             print("a")
             time.sleep(1)
             try:
@@ -110,7 +111,9 @@ for i in range(0,code.shape[0]):
                 month.remove("nan")
             except:
                 z = z
-        print(month)
+        if count == 1:
+            count+=1
+            print(month)
 
 
         while True:
@@ -127,9 +130,6 @@ for i in range(0,code.shape[0]):
                 print("AA?")
                 if  counter > code.shape[0]:
                     break
-        if count == 0:
-            print(month)
-            count+=1
       
         s.click()
         time.sleep(5)
