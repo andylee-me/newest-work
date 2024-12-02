@@ -129,6 +129,7 @@ for i in range(0,code.shape[0]):
                 print(month[1+i*3])
                 print("AA?")
                 if  counter > code.shape[0]:
+                    print("breakk")
                     break
       
         s.click()
