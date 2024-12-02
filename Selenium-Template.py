@@ -70,9 +70,13 @@ count = 0
 #read google-sheets
 url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSINLlSv4NcCszvA5XOPsuYCxZEk9_tBnhgLvyDkcG73QgFObITFtaZRQ492wlS53NPBlQi0AfPHMVh/pub?gid=1326092367&single=true&output=csv"
 code = pd.read_csv(url)
+pluz_i = 0
+for i in range(0,code.shape[0]):
+    if code["證券代號"][i] == "#REF!":
+        pluz_i+=1
 
 counter = 0
-for i in range(0,code.shape[0]):
+for i in range(pluz_i,code.shape[0]+pluz_i):
     try:
         driver.get('https://goodinfo.tw/tw/ShowK_Chart.asp?STOCK_ID='+str(int(code["證券代號"][i]))+'&CHT_CAT=WEEK')
         print("第",i,"次")
