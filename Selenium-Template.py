@@ -79,7 +79,6 @@ for i in range(0,code.shape[0]):
         if count == 0:
             print("a")
             time.sleep(1)
-            count+=1
             try:
                 # 等待遮擋按鈕出現，最多等 10 秒
                 interstitial_button = WebDriverWait(driver, 10).until(
@@ -128,7 +127,9 @@ for i in range(0,code.shape[0]):
                 print("AA?")
                 if  counter > code.shape[0]:
                     break
-        print(month)
+        if count == 0:
+            print(month)
+            count+=1
       
         s.click()
         time.sleep(5)
