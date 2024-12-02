@@ -75,6 +75,7 @@ counter = 0
 for i in range(0,code.shape[0]):
     try:
         driver.get('https://goodinfo.tw/tw/ShowK_Chart.asp?STOCK_ID='+str(int(code["證券代號"][i]))+'&CHT_CAT=WEEK')
+        print(code["證券代號"][i])
         if count == 0:
             print("a")
             time.sleep(1)
