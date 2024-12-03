@@ -67,13 +67,19 @@ driver = webdriver.Chrome(options = chrome_options)
 #    f.write(f"This was written with a GitHub action {driver.title}")
 
 count = 0
+first = 0
 #read google-sheets
 url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSINLlSv4NcCszvA5XOPsuYCxZEk9_tBnhgLvyDkcG73QgFObITFtaZRQ492wlS53NPBlQi0AfPHMVh/pub?gid=1326092367&single=true&output=csv"
 code = pd.read_csv(url)
 rename_data = []
 for i in range(0,code.shape[0]):
-    if code["證券代號"][i] != "#REF!" or code["證券代號"][i] != " " or code["證券代號"][i] != "":
-        rename_data.append({"original_filename": "K_Chart ("+str(i)+").csv", "new_filename": str(code["證券代號"][i])+".csv"})
+    if code["證券代號"][i] == "#REF!":
+        count+=1
+    else:
+        if first == 0:
+            rename_data.append({"original_filename": "K_Chart.csv", "new_filename": str(code["證券代號"][i])+".csv"})
+        else:
+            rename_data.append({"original_filename": "K_Chart ("+str(i-count)+").csv", "new_filename": str(code["證券代號"][i])+".csv"})
 
 
 
