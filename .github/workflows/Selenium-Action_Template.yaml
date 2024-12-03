@@ -59,7 +59,9 @@ jobs:
           mv file/*.csv converted_csv/  # 將所有 CSV 檔案移動到 converted_csv 資料夾中
 
       - name: rename csv files
-        run: python rename.py
+        run: python save_name.py
+      - name: rename csv files_part2
+        run: python Rename.py
         
         
       - name: Commit and Push The Results From Python Selenium Action
