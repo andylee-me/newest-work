@@ -73,7 +73,7 @@ code = pd.read_csv(url)
 rename_data = []
 for i in range(0,code.shape[0]):
     if code["證券代號"][i] != "#REF!" or code["證券代號"][i] != " " or code["證券代號"][i] != "":
-        rename_data.append({"original_filename": "K_Chart ("+str(i)+").csv", "new_filename": "str(code[""證券代號""][i]).csv"})
+        rename_data.append({"original_filename": "K_Chart ("+str(i)+").csv", "new_filename": str(code["證券代號"][i])+".csv"})
 
 
 
