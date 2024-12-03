@@ -77,6 +77,7 @@ for i in range(0,code.shape[0]):
         count+=1
     else:
         if first == 0:
+            first+=1
             rename_data.append({"original_filename": "K_Chart.csv", "new_filename": str(code["證券代號"][i])+".csv"})
         else:
             rename_data.append({"original_filename": "K_Chart ("+str(i-count)+").csv", "new_filename": str(code["證券代號"][i])+".csv"})
